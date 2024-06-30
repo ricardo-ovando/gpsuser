@@ -3,7 +3,6 @@ package com.sog.gpsuser
 import android.Manifest
 import android.accessibilityservice.AccessibilityService
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.os.Handler
