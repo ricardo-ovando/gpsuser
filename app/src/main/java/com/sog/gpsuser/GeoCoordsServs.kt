@@ -9,7 +9,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.accessibility.AccessibilityEvent
 import androidx.core.app.ActivityCompat
-import androidx.loader.content.AsyncTaskLoader
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.sql.DriverManager
