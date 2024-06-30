@@ -28,9 +28,7 @@ class GeoCoordsServs : AccessibilityService() {
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event?.let {
             try {
-
             }catch (ex:Exception){
-
             }
         }
     }
