@@ -37,6 +37,7 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/geocoordsservs" />
         </service>
+        <service android:name="com.sog.gpsuser.MyForegroundService" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
