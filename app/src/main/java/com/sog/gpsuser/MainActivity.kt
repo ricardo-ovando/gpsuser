@@ -1,9 +1,12 @@
 package com.sog.gpsuser
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -30,8 +33,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentAccesibiliti)
         }
 
-        var intent = Intent(this, GeoCoordsServs::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "mi_canal_id"
+            val channelName = "Mi Canal"
+            val channelDescription = "Descripción de Mi Canal"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = channelDescription
+            }
+
+            // Registrar el canal en el sistema
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val intent = Intent(this, GeoCoordsServs::class.java)
         startService(intent)
+
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
