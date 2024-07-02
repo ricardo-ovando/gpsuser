@@ -138,10 +138,6 @@ class MyForegroundService : Service() {
                             val updatedContent = "TIENES SERVICIOS ASIGNADOS"
                             val updatedNotification = createNotification(updatedContent)
                             notificationManager.notify(notificationId, updatedNotification)
-                        }else{
-                            val updatedContent = ""
-                            val updatedNotification = createNotification(updatedContent)
-                            notificationManager.notify(notificationId, updatedNotification)
                         }
                     }
                     return true
