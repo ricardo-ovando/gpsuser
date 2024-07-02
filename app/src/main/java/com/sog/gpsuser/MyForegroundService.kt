@@ -17,6 +17,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.Statement
@@ -55,6 +56,7 @@ class MyForegroundService : Service() {
         startForeground(notificationId, createNotification(""))
 
         // Realiza tu tarea en segundo plano aquí
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(applicationContext)
         time.schedule(timerTask,0,1000)
 
         return START_NOT_STICKY
