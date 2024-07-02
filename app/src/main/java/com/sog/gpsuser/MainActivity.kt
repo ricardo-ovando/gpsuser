@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this, MyForegroundService::class.java)
-        startService(intent)
+        if(!isAccessibilityServiceEnabled()){
+            val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+            startActivity(intent)
+        }
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -47,6 +49,11 @@ class MainActivity : AppCompatActivity() {
                 UsuarioApp()
             })
         },0,1,TimeUnit.SECONDS)
+    }
+
+    private fun isAccessibilityServiceEnabled(): Boolean {
+        val enabledServices = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
+        return enabledServices?.contains("com.gmt.gpsuser/com.gmt.gpsuser.gpsservice") ?: false
     }
 
     fun UsuarioApp(){
