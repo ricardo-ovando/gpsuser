@@ -28,28 +28,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        if(!isAccessibilityServiceEnabled()){
-            var intentAccesibiliti = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-            startActivity(intentAccesibiliti)
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "mi_canal_id"
-            val channelName = "Mi Canal"
-            val channelDescription = "Descripción de Mi Canal"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, channelName, importance).apply {
-                description = channelDescription
-            }
-
-            // Registrar el canal en el sistema
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val intent = Intent(this, GeoCoordsServs::class.java)
+        val intent = Intent(this, MyForegroundService::class.java)
         startService(intent)
-
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -80,11 +60,6 @@ class MainActivity : AppCompatActivity() {
             if(usuarioappN.toString() != "")usuario.setText(usuarioappN.toString())
         }catch (ex:Exception){}
 
-    }
-
-    private fun isAccessibilityServiceEnabled(): Boolean {
-        val enabledServices = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        return enabledServices?.contains("com.gmt.gpsuser/com.gmt.user.GeoCoordsServs") ?: false
     }
 
     fun GuardarGeoCoords(view: View) {
